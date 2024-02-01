@@ -3,7 +3,9 @@ package com.ucne.navegation
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
@@ -23,6 +25,30 @@ class MainActivity : ComponentActivity() {
             NavegationTheme {
                 val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = "home"){
+                    composable("home") {
+                        Column {
+
+                            Text(text = "Bienvenido a mi app")
+
+                            Button(onClick = {
+
+                                navController.navigate("about")
+                            }) {
+
+                                Text(text = "Ir a about")
+                            }
+                            Button(onClick = {
+                                navController.navigate("login")
+                            }) {
+                                Text(text = "login")
+                            }
+                            Button(onClick = {
+                                navController.navigate("register")
+                            }) {
+                                Text(text = "Registrarse")
+                            }
+                        }
+                    }
                     composable("about"){
 
                     }
@@ -40,11 +66,12 @@ class MainActivity : ComponentActivity() {
                                     }
                                 }
                             }) {
-
+                                Text(text = "Boton")
                             }
                         }
                         composable("register") {
                             val viewmodel = it.sharedViewModel<SampleViewmodel>(navController)
+                            Text(text = "Bienvenido a register")
                         }
                         composable("Forgot_password") {
                             val viewmodel = it.sharedViewModel<SampleViewmodel>(navController)
